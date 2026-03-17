@@ -31,6 +31,7 @@
                     <td>Name</td>
                     <td>Price</td>
                     <td>Quantity</td>
+                    <td>Action</td>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +41,18 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->quantity }}</td>
+                    <td>
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                
+                        <form action="{{ route('products.destroy',$product->id) }}"
+                            method="POST" style="display:inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
