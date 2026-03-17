@@ -12,12 +12,20 @@
 </head>
 <body>
     <div class="container mt-5">
-        <div class="d-flex justify-content-between">
-            <h2 class="">Product List</h2>
-            <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
-        </div>
+        <h2 class="mb-4">Product List</h2>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <a href="{{ route('products.create') }}" class="btn btn-primary mb-3" style="float:right;">
+            Add Product
+        </a>
+
         <table class="mt-3 table table-striped table-borderd">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <td>#</td>
                     <td>Name</td>
@@ -26,17 +34,17 @@
                 </tr>
             </thead>
             <tbody>
-                
-                    @foreach ($products as $product)
-                    <tr>
+                @foreach ($products as $product)
+                <tr>
                     <td>{{ $product->id }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->quantity }}</td>
-                    </tr>
-                    @endforeach
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->quantity }}</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 </body>
 </html>
+
