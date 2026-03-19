@@ -19,3 +19,8 @@ Route::get('/', function () {
 });
 
 Route::resource('products', ProductController::class);
+
+Route::get('/access', [ProductController::class, 'relationship']);
+
+Route::get('/profile_image',[ProductController::class, 'profileImage']);
+Route::post('/profile_image_upload',[ProductController::class, 'profileImageUpload'])->name('profile.upload');
